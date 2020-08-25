@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <header>
+        <h1>Titel</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Undertitle</h2>
+
+            <article>
+                <img src="https://placeimg.com/400/300/any" alt="">
+                <h3>Article 1</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempore voluptas, aliquam veniam odio nobis, tempora quam provident animi ipsum nesciunt qui nihil modi neque excepturi labore blanditiis alias obcaecati.</p>
+            </article>
+
+
+            <article>
+                <img src="https://placeimg.com/400/300/animals" alt="">
+                <h3>Article 2</h3>
+                <p>hej Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate pariatur quisquam nemo aliquam error reiciendis autem sapiente voluptas nihil perferendis omnis commodi minus, odio tempore maxime incidunt magni quod vel.</p>
+            </article>
+        </section>
+    </main>
+    <footer>This is the footer</footer>
+    <script>
+        const overskrift = document.querySelector("h1");
+        overskrift.textContent = "Billeder";
+        console.log(overskrift.textContent = "Billeder");
+
+        const artikelnavn1 = document.querySelector("article:nth-child(2) h3");
+        artikelnavn1.textContent = "Første billede";
+
+        const artikeltext1 = document.querySelector("article:nth-child(2) p");
+        artikeltext1.innerHTML = "Dette er en billedetekst til <b>første</b> billede";
+
+        const artikelnavn2 = document.querySelector("article:nth-child(3) h3");
+        artikelnavn2.textContent = "Andet billede";
+
+        const artikeltext2 = document.querySelector("article:nth-child(3) p");
+        artikeltext2.innerHTML = "Dette er en billedetekst til <b>andet</b> billede";
+
+        //billeder//
+        const artikelpic1 = document.querySelector("article:nth-child(2) img");
+        artikelpic1.src = "https://placeimg.com/400/300/arch";
+        artikelpic1.alt = "arkitekturbilleder";
+        console.log(artikelpic1)
+
+
+        const artikelpic2 = document.querySelector("article:nth-child(3) img");
+        artikelpic2.src = "https://placeimg.com/400/300/arch";
+        artikelpic2.alt = "arkitekturbilleder 1";
+        console.log(artikelpic2)
+
+        //ny article//
+        let mainSection = document.querySelector("section");
+        let newArticle = document.createElement("article");
+        let title = document.createElement("h3");
+        let img = document.createElement("img");
+
+
+        img.src = "https://placeimg.com/400/300/arch";
+
+        newArticle.appendChild(img);
+        let broedText = document.createElement("p");
+        let broedTextTekst = document.createTextNode("hej Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate pariatur quisquam nemo aliquam error reiciendis autem sapiente voluptas nihil perferendis omnis commodi minus, odio tempore maxime incidunt magni quod vel.");
+        let titleText = document.createTextNode("Article 3");
+        title.appendChild(titleText);
+        newArticle.appendChild(title);
+        newArticle.appendChild(broedTextTekst);
+        mainSection.appendChild(newArticle);
+
+    </script>
+</body>
+
+</html>
