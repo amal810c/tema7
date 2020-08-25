@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <p>Hvad er din alder?</p>
+    <input type="text" id="din_alder">
+    <p>Hvad er din dates alder?</p>
+    <input type="text" id="anden_alder">
+    <button>Beregn</button>
+
+    <script>
+        document.querySelector("button").addEventListener("click", buttonClick);
+
+        function buttonClick() {
+            let yourAge = document.querySelector("#din_alder").value;
+            let otherAge = document.querySelector("#anden_alder").value;
+            let nedreLimit = yourAge / 2 + 7;
+            let ovreLimit = (yourAge - 7) * 2;
+
+            if (yourAge > 15 && otherAge > 15) {
+                if (nedreLimit <= otherAge && ovreLimit >= otherAge) {
+                    console.log("Reglen er overholdt! Go date!");
+                } else {
+                    console.log("Reglen er ikke overholdt! AD!");
+                }
+
+            } else {
+                console.log("Du er under 15 eller pædofil! Smut pommes frites!")
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>
