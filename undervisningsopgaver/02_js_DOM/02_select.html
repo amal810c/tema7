@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <header>
+        <h1>Titel</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Undertitle</h2>
+
+            <article>
+                <img src="https://placeimg.com/400/300/any" alt="">
+                <h3>Article 1</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempore voluptas, aliquam veniam odio nobis, tempora quam provident animi ipsum nesciunt qui nihil modi neque excepturi labore blanditiis alias obcaecati.</p>
+            </article>
+
+
+            <article>
+                <img src="https://placeimg.com/400/300/animals" alt="">
+                <h3>Article 2</h3>
+                <p>hej Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate pariatur quisquam nemo aliquam error reiciendis autem sapiente voluptas nihil perferendis omnis commodi minus, odio tempore maxime incidunt magni quod vel.</p>
+            </article>
+        </section>
+    </main>
+    <footer>This is the footer</footer>
+    <script>
+        const overskrift = document.querySelector("h1");
+        overskrift.textContent;
+        console.log(overskrift.textContent);
+
+
+        const underoverskrift = document.querySelector("h2");
+        underoverskrift.textContent;
+        console.log(underoverskrift.textContent);
+
+        const article1 = document.querySelector("article:nth-child(2) h3");
+        article1.textContent;
+        console.log(article1.textContent);
+
+        const articletext1 = document.querySelector("article:nth-child(2) p");
+        articletext1.textContent;
+        console.log(articletext1.textContent);
+
+        const article2 = document.querySelector("article:nth-child(3) h3");
+        article2.textContent;
+        console.log(article2.textContent);
+
+        const articletext2 = document.querySelector("article:nth-child(3) p");
+        articletext2.textContent;
+        console.log(articletext2.textContent);
+
+        const info = document.querySelector("footer");
+        info.textContent;
+        console.log(info.textContent);
+
+    </script>
+</body>
+
+</html>
