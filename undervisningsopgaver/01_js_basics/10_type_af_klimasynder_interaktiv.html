@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <p>Flyrejse i timer</p>
+    <input type="text" id="flyvetid">
+    <button>Klik og beregn co2-udledningen, kig i konsollen</button>
+
+    <script>
+        document.querySelector("button").addEventListener("click", buttonClick);
+
+        function buttonClick() {
+            let timer = document.querySelector("#flyvetid").value;
+            let co2 = timer * 109;
+            let resultat;
+            if (isNaN(timer)) {
+                resultat = "Det er ikke et tal, prøv igen!";
+
+            } else if (timer <= 0) {
+                resultat = "Tiden er mindre end nul! Prøv igen!"
+            } else {
+                resultat = `CO2-udledningen er ${co2} kg CO2`;
+            }
+            console.log(resultat);
+        }
+
+    </script>
+</body>
+
+</html>
