@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <script>
+        let timer = 3;
+        let co2 = timer * 109;
+        let respons = "";
+
+        //mindre en 100
+        if (co2 < 100) {
+            respons = "Tæt på Thunberg.";
+        }
+
+        //mellem 100 og 200
+        else if (co2 < 200) {
+            respons = "Ja ja, du behøver ikke at melde dig ud af Å!";
+        }
+
+        //mellem 200 og 600
+        else if (co2 < 600) {
+            respons = "Det er godt for turismen i nordeuropa.";
+        }
+
+        //over 600
+        else {
+            respons = "Nå ja vi kan jo altid kolonisere en anden planet.";
+        }
+
+        let resultat = `Ved ${timer} timers flyverejse har du udledt ${co2} kg CO2.\n${respons}`;
+        console.log(resultat);
+
+    </script>
+</body>
+
+</html>
