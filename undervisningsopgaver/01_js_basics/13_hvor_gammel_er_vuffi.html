@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <p>Hvad er din hunds alder?</p>
+    <input type="text" id="hundealder">
+    <button>Beregn</button>
+
+    <script>
+        let hundeliv;
+
+        document.querySelector("button").addEventListener("click", udregn);
+
+        function udregn() {
+            hundeliv = document.querySelector("#hundealder").value;
+            let gammelForm = hundeliv * 7.5;
+            let nyForm = Math.round(16 * Math.log(hundeliv) + 31);
+
+            //Gammel form
+            //let alder = 12;
+            let resultatGammelForm = `Efter den gamle metode er din hunds menneskealder ${gammelForm} år.`;
+            console.log(resultatGammelForm);
+
+            //Ny form
+            let resultatNyForm = `Efter den nye metode er din hunds menneskealder ${nyForm} år.`;
+            console.log(resultatNyForm);
+        }
+
+    </script>
+</body>
+
+</html>
