@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <header>
+        <h1>Titel</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Undertitle</h2>
+
+            <article>
+                <img src="https://placeimg.com/400/300/any" alt="">
+                <h3>Article 1</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam tempore voluptas, aliquam veniam odio nobis, tempora quam provident animi ipsum nesciunt qui nihil modi neque excepturi labore blanditiis alias obcaecati.</p>
+            </article>
+
+
+            <article>
+                <img src="https://placeimg.com/400/300/animals" alt="">
+                <h3>Article 2</h3>
+                <p>hej Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate pariatur quisquam nemo aliquam error reiciendis autem sapiente voluptas nihil perferendis omnis commodi minus, odio tempore maxime incidunt magni quod vel.</p>
+            </article>
+        </section>
+    </main>
+    <footer>This is the footer</footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+        function start() {
+            //javascript program som udføres, når DOMContent er loaded
+
+            console.log("DOMContent er loaded");
+        }
+
+
+        let pic1 = document.querySelector("article:nth-child(2) img").addEventListener("click", skiftBillede);
+
+        function skiftBillede() {
+            console.log("klik");
+            let tal = Math.round(Math.random() * 10);
+
+            const artikelpic1 = document.querySelector("article:nth-child(2) img");
+            artikelpic1.src = "https://placeimg.com/400/300/any?t=" + tal;
+            artikelpic1.alt = "arkitekturbilleder";
+            console.log(artikelpic1)
+        }
+
+        const overskrift = document.querySelector("h1");
+        overskrift.textContent = "Billeder";
+        console.log(overskrift.textContent = "Billeder");
+
+        const artikeltext1 = document.querySelector("article:nth-child(3) p");
+        artikeltext1.textContent = "dette er et billede";
+
+    </script>
+</body>
+
+</html>
