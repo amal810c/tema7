@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            background-color: #dcffff;
+        }
+
+        article {
+            border: 2px dotted black;
+            border-radius: 15px 50px;
+            padding: 10px;
+            font-family: monospace;
+            box-shadow: 8px 8px 10px #4d88ad;
+            background-color: rgb(158, 209, 209);
+
+        }
+
+        img {
+            max-width: 50%;
+            box-shadow: 8px 8px 10px gray;
+        }
+
+        section {
+            width: 90vw;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+        }
+
+        #person {
+            text-align: center;
+        }
+
+
+        h1 {
+            text-align: center;
+            font-family: monospace;
+            font-size: 5vh;
+            text-shadow: 8px 8px 5px #4d88ad;
+        }
+
+        h2 {
+            font-size: 3vh;
+            text-shadow: 8px 8px 5px #4d88ad;
+        }
+
+        p {
+            font-size: 2vh;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>MMD class</h1>
+    <section class="container"></section>
+
+    <template>
+        <article id="person">
+            <h2 class="navn"></h2>
+            <img src="" alt="">
+            <p class="efternavn"></p>
+            <p class="by"></p>
+            <p class="land"></p>
+        </article>
+    </template>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+        function start() {
+            console.log("DOM content loaded");
+        }
+
+
+        let temp = document.querySelector("template");
+        let container = document.querySelector("section");
+        let json;
+        let filter = "k";
+
+        const link = "https://spreadsheets.google.com/feeds/list/1mtHhpoEkYqVqr1TSnKQ1_sQZWI7FRVjcw3H1oatDOVQ/od6/public/values?alt=json";
+
+        async function hentdata() {
+            const respons = await fetch(link);
+            json = await respons.json();
+            vis(json);
+        }
+
+        function vis(personer) {
+            console.log(personer);
+            personer.feed.entry.forEach(person => {
+                if (filter == person.gsx$køn.$t.toLowerCase()) {
+
+                    const klon = temp.cloneNode(true).content;
+                    klon.querySelector(".navn").textContent = person.gsx$navn.$t;
+                    klon.querySelector(".efternavn").textContent = "Efternavn: " + person.gsx$efternavn.$t;
+                    klon.querySelector(".by").textContent = "By: " + person.gsx$by.$t;
+                    klon.querySelector(".land").textContent = "Land: " + person.gsx$land.$t;
+                    klon.querySelector("img").src = person.gsx$billede.$t;
+                    container.appendChild(klon);
+                }
+            })
+        }
+
+        hentdata();
+
+    </script>
+</body>
+
+</html>
