@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            background-color: #dcffff;
+        }
+
+        article {
+            border: 2px dotted black;
+            border-radius: 15px 50px;
+            padding: 10px;
+            font-family: monospace;
+            box-shadow: 8px 8px 10px #4d88ad;
+            background-color: rgb(158, 209, 209);
+
+        }
+
+        img {
+            max-width: 50%;
+            box-shadow: 8px 8px 10px gray;
+        }
+
+        section {
+            width: 90vw;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+        }
+
+        #person {
+            text-align: center;
+        }
+
+
+        h1 {
+            text-align: center;
+            font-family: monospace;
+            font-size: 5vh;
+            text-shadow: 8px 8px 5px #4d88ad;
+        }
+
+        h2 {
+            font-size: 3vh;
+            text-shadow: 8px 8px 5px #4d88ad;
+        }
+
+        p {
+            font-size: 2vh;
+        }
+
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        button {
+            border: 1px dotted black;
+            font-family: monospace;
+            border-radius: 15px 50px;
+        }
+
+        .valgt {
+            color: white;
+            background-color: #4d88ad;
+        }
+
+        /***************popup**************/
+        #popup {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgb(0, 0, 0, .8);
+            display: none;
+        }
+
+        #popup article {
+            width: 80vw;
+            height: 80vh;
+            margin: 4rem auto;
+            background-color: white;
+        }
+
+        #luk {
+            position: fixed;
+            top: 0;
+            right: 1em;
+            background-color: white;
+            color: black;
+            border-radius: 5px;
+            padding: .1em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Alle</h1>
+    <header>
+        <button class="filter valgt" data-køn="alle">Alle</button>
+        <button class="filter" data-køn="m">Mænd</button>
+        <button class="filter" data-køn="k">Kvinder</button>
+        <button class="filter" data-køn="andet">Andet</button>
+    </header>
+
+
+
+    <section class="container"></section>
+
+    <template>
+        <article id="person">
+            <h2 class="navn"></h2>
+            <img src="" alt="">
+            <p class="efternavn"></p>
+            <p class="by"></p>
+            <p class="land"></p>
+        </article>
+    </template>
+
+    //popup-vindue
+    <section id="popup">
+        <article>
+            <button id="luk">X</button>
+            <h2></h2>
+            <img src="" alt="">
+            <p></p>
+        </article>
+
+
+    </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+        function start() {
+            console.log("DOM content loaded");
+        }
+
+
+        let temp = document.querySelector("template");
+        let container = document.querySelector("section");
+        let json;
+        let filter = "alle";
+
+        const link = "https://spreadsheets.google.com/feeds/list/1mtHhpoEkYqVqr1TSnKQ1_sQZWI7FRVjcw3H1oatDOVQ/od6/public/values?alt=json";
+
+        async function hentdata() {
+            const respons = await fetch(link);
+            json = await respons.json();
+            addEventListenerToButtons();
+            vis(json);
+        }
+
+        function vis(personer) {
+            console.log(personer);
+            container.innerHTML = "";
+            personer.feed.entry.forEach(person => {
+                if (filter == "alle" || filter == person.gsx$køn.$t.toLowerCase()) {
+
+                    const klon = temp.cloneNode(true).content;
+                    klon.querySelector(".navn").textContent = person.gsx$navn.$t;
+                    klon.querySelector(".efternavn").textContent = "Efternavn: " + person.gsx$efternavn.$t;
+                    klon.querySelector(".by").textContent = "By: " + person.gsx$by.$t;
+                    klon.querySelector(".land").textContent = "Land: " + person.gsx$land.$t;
+                    klon.querySelector("img").src = person.gsx$billede.$t;
+                    container.appendChild(klon);
+                }
+            })
+        }
+
+        function addEventListenerToButtons() {
+            document.querySelectorAll(".filter").forEach((btn) => {
+                btn.addEventListener("click", filterBTNs);
+            });
+        }
+
+        function filterBTNs() {
+            filter = this.dataset.køn;
+            document.querySelector("h1").textContent = this.textContent;
+            document.querySelectorAll(".filter").forEach((btn) => {
+                btn.classList.remove("valgt");
+            })
+            this.classList.add("valgt");
+            vis(json);
+        }
+
+        hentdata();
+    </script>
+</body></html>
